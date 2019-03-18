@@ -1,0 +1,88 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Submit Assignmnet</div>
+            </div>
+        </div>
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#new-assigment" class="tab-link tab-link-active">New</a>
+                <a href="#old-assigment" class="tab-link">Previous</a>
+            </div>
+        </div>
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="new-assigment" class="page-content tab tab-active">
+                    <div class="block">
+                        <div class="list">
+                            <ul>
+                                <li>
+                                    <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                        <select name="ddlSubjectAssgnment" id="ddlSubjectAssgnment" onchange="phonegapApp.getMentorStudentBySubjectId()">
+
+                                        </select>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Select Subject</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="item-link smart-select smart-select-init" data-open-in="popover">
+                                        <select name="superhero" multiple id="ddlMentorStudents">
+
+                                        </select>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Students</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="item-link popover-open"  data-popover=".popover-sendassignment">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Select File</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <input type="hidden" id="txtImageFileForAssignment">
+                                <input type="hidden" id="txtImageFileForAssignmentType">
+
+                                <li>
+                                    <button class="col button color-pink" onclick="phonegapApp.assignmentSuccess()">Submit</button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="old-assigment" class="page-content tab">
+                    <div class="block">
+                        <div class="list tablet-inset">
+                            <ul id= "lblMentorAssignmentLists">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

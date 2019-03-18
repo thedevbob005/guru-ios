@@ -1,0 +1,123 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                <a href="#" class="link back">
+                    <i class="icon icon-back"></i>
+                    <span class="ios-only">Back</span>
+                </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;" id="lbl-user-profile-name"></div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block">
+                <div class="row">
+                    <div class="col-25 text-align-center">
+                        <img src="img/user.jpg" alt="" class="profile-user-image" width="70" height="70" id="image-user-profile">
+                    </div>
+                    <div class="col-75 text-align-center">
+                        <div class="row">
+                            <div class="col-33 text-align-center">
+                                <span class="strong-number" id="user-profile-post-count"></span><br>
+                                <span>posts</span>
+                            </div>
+                            <div class="col-33 text-align-center">
+                                <span class="strong-number" id="user-profile-followers-count">47</span><br>
+                                <span>Followers</span>
+                            </div>
+                            <div class="col-33 text-align-center">
+                                <span class="strong-number" id="user-profile-following-count">96</span><br>
+                                <span>Following</span>
+                            </div>
+                        </div>
+                         <div class="row gap" id="lblUserFollowButton" style="display: none;">
+                            <div class="col-5"></div>
+                            <div class="col-95 text-align-center">
+                                <button class="col-100 button color-orange button-outline button-small" id="lblUserFollowButton" >Follow</button>
+                            </div>
+                        </div> 
+                        <div class="row gap" id="TakeTracherSection" style="display:none;">
+                            
+                            <div class="col-100 text-align-center">
+                                <a class="col-100 button color-blue button-outline button-small" id="follow-mentor-button">Follow Mentor</a>
+                            </div>
+                        </div>
+                        <div class="row gap" id="lblUserDemoClass" style="display: none;">
+                            
+                            <div class="col-50 text-align-center">
+                                <button class="col-100 button color-orange button-outline button-small" id="lblUserDemoClassButton">Book Demo Class</button>
+                            </div>
+
+                            <div class="col-50 text-align-center">
+                                <button class="col-100 button color-pink button-outline button-small" id="lblUserPaidClassButton">Select Mentor</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+
+
+            <div class="block">
+                <div class="strong-number title" id="user-profile-username">
+                    
+                </div>
+                <div id="user-profile-bio">
+                    loading . . . .
+                </div>
+                <div id="user-profile-achivement">
+                
+                </div>
+            </div>  
+
+            
+            <div class="block" id="time-table-mantor-teach-time-profile" style="display:none;">
+                <div class="list accordion-list">
+                    <ul>
+                        <li class="accordion-item">
+                            <a href="#" class="item-content item-link">
+                                <div class="item-inner">
+                                <div class="item-title">Timetable</div>
+                                </div>
+                            </a>
+                            <div class="accordion-item-content">
+                                <div class="block">
+                                    <div class="data-table">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="label-cell">Days</th>
+                                                    <th class="label-cell">Strat Time</th>
+                                                    <th class="label-cell">End Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="lblTimeListMentorTeachTime">
+                                    
+                                            </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="block" id="selected-location-teacher-prefered-location"  style="display:none">
+               
+            </div>
+
+            <div class="block-title strong-number">Posts</div>
+            <div class="block" id="another-user-post">
+
+            </div>
+
+            
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

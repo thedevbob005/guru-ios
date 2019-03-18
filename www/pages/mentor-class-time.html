@@ -1,0 +1,98 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Class And Time Assign</div>
+
+            </div>
+        </div>
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#timehistory" class="tab-link tab-link-active">History</a>
+                <a href="#timecreate" class="tab-link">Create</a>
+            </div>
+        </div>
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="timehistory" class="page-content tab tab-active">
+                    <div class="block" id="lblSeduleHistory">
+                        <div class="data-table card">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="tablet-only">Day</th>
+                                        <th class="tablet-only">Subject</th>
+                                        <th class="tablet-only">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lblClassTimingMentor">
+                                    <!-- <tr>
+                                        <td class="label-cell">Frozen yogurt</td>
+                                        <td class="numeric-cell">159</td>
+                                        <td class="tablet-only">I like it!</td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    <div id="timecreate" class="page-content tab">
+                        <div class="list no-hairlines-md block">
+                            <ul>
+                                <li>
+                                    <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                        <select name="selectSubjects" id="selectSubjects">
+                                            <option value="">Select</option>
+                                        </select>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Select Subjects</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                        <select name="selectDays" id="selectDays">
+                                            <option value="">Select</option>
+                                        </select>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Select Day</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                        <select name="selectTime" id="selectTime">
+                                            <option value="">Select</option>
+                                        </select>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Select Time</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <button class="button color-green button-fill-md col" onclick="phonegapApp.updateRutin()">Submit</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

@@ -1,0 +1,54 @@
+<template>
+    <div class="page" data-name="offer-subject">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Offer Subject</div>
+                <div class="subnavbar searchbar-init">
+                    <!-- Searchbar with auto init -->
+                    <form class="searchbar searchbar-list" data-search-container=".search-here">
+                        <div class="searchbar-inner">
+                            <div class="searchbar-input-wrap">
+                                <input type="search" placeholder="Search">
+                                <i class="searchbar-icon"></i>
+                                <span class="input-clear-button"></span>
+                            </div>
+                            <span class="searchbar-disable-button">Cancel</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="searchbar-backdrop"></div>
+            <div class="block list media-list search-list searchbar-found">
+                <ul id="lblOfferSubjectList">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on:{
+            pageInit: function (e, page) {
+                var searchbar = app.searchbar.create({
+                    el: '.searchbar-list',
+                    searchContainer: '.list',
+                    searchIn: '.item-title-row',
+                    on: {
+                        search(sb, query, previousQuery) {
+                            // console.log(query, previousQuery);
+                        }
+                    }
+                });
+            }
+        }
+    }
+</script>

@@ -1,0 +1,115 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Select Mentor</div>
+
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="block" id=packageSearch>
+                <div class="list inline-labels no-hairlines-md">
+                    <ul>
+                        <li class="item-content item-input">
+                            <div class="item-media">
+                                <i class="icon f7-icons">drawers_fill</i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title item-label">Select Package</div>
+                                <div class="item-input-wrap input-dropdown-wrap">
+                                    <select placeholder="Select payment" id="ddlPackagePayment"></select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-media">
+                                <i class="icon f7-icons">calendar</i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title item-label">How Many Days</div>
+                                <div class="item-input-wrap input-dropdown-wrap">
+                                    <select name="ddlDaysPackage" id="ddlDaysPackage">
+
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-media">
+                                <i class="icon f7-icons">calendar</i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title item-label">Per Day Hour</div>
+                                <div class="item-input-wrap input-dropdown-wrap">
+                                    <select name="ddlHourPackage" id="ddlHourPackage">
+                                        <option value="1">1 Hour</option>
+                                        <option value="2">2 Hours</option>
+                                        <option value="3">3 Hours</option>
+                                        <option value="4">4 Hours</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-media">
+                                <i class="icon f7-icons">calendar</i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title item-label">Select Subject</div>
+                                <div class="item-input-wrap input-dropdown-wrap">
+                                    <select name="ddlPackagePaynmentSelectSubject" id="ddlPackagePaynmentSelectSubject">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-media">
+                                <i class="icon f7-icons">calendar</i>
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title item-label">Select Subject</div>
+                                <div class="item-input-wrap input-dropdown-wrap">
+                                    <select name="ddlPackagePaynmentSelectType" id="ddlPackagePaynmentSelectType">
+                                        <option value="Offline">Offline</option>
+                                        <option value="Online">Online</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button class="button color-green button-fill-md col" onclick="phonegapApp.packageValue()">Apply
+                                Filter</button>
+                        </li>
+                </ul>
+            </div>
+            <input type="hidden" id="txtpackageMentor" value="">
+            </div>
+
+            <div class="block" id="amountShow" style="display:none">
+                <div class="block-title">Total Payble Amount</div>
+                <div class="row">
+                    <div class="col">
+                        <div class="elevation-5" style="padding: 12px;">
+                            <p>Amount : <span id="amountPay"></span></p>
+                            <p>Days : <span id="amountDays"></span></p>
+                            <p>Hour : <span id="amountHour"></span></p>
+                            <p>Total Amount : <strong  id="amountTotal"></strong></p>
+                            <button class="button color-green button-fill-md col" onclick="phonegapApp.selectMentor()">Pay Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

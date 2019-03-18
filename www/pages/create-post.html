@@ -1,0 +1,45 @@
+<template>
+    <div class="page" data-name="catalog">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner">
+                <div class="title">Create</div>
+                <div class="right">
+                    <a href="#" class="link icon-only disabled" id="btnShare" onclick="phonegapApp.mentorPost()">
+                        Share
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="searchbar-backdrop"></div>
+            <div class="block">
+                <div class="row">
+                    <div class="col-20 text-align-center">
+                        <img src="img/user.jpg" alt="" class="profile-user-image" width="30" height="30" id="userImagePostPage">
+                    </div>
+                    <div class="col-80">
+                        <div class="row strong-number" id="userNameOnPostPage"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <textarea id="txtMind" rows="10" placeholder="Enter Your Post Content" style="width: 100%;" onkeyup="phonegapApp.postChange(this.value)"></textarea>
+            </div>
+            <div class="block" id="divSelection">
+                <a class="link" id="deletePostImage" style="top: 59px;padding: 8px 10px;background-color: red;color: white;font-size: 18px;border-radius: 50%; display: none;" onclick="phonegapApp.deletePostImage()"><i class="icon f7-icons">trash_fill</i></a>
+                <div class="elevation-demo elevation-6 elevation-hover-24 elevation-pressed-12 elevation-transition text-align-center"
+                    id="postImagePlace" style="display:none;">
+                    <img src="" id="postImage" style="width:100%;height: 100%;">
+                    <input type="hidden" id="txtPostImage">
+                    <input type="hidden" id="txtPostImagetype">
+                    <input type="hidden" id="txtYoutubeLink">
+                </div>
+            </div>
+            <div class="block">
+                <br>
+                <a href="#" class="link popover-open text-color-blue" href="#" data-popover=".post-image-select"><i class="icon f7-icons">camera_fill</i>
+                &nbsp; Add Photo</a>
+            </div>
+        </div>
+    </div>
+</template>

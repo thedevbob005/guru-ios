@@ -1,0 +1,82 @@
+<template>
+  <div class="page" data-name="catalog">
+    <div class="navbar no-shadow">
+      <div class="navbar-inner">
+        <div class="left title">Mentor List</div>
+        <div class="right">
+          <a href="#" class="link popup-open" data-popup=".popup-filter">
+            <i class="material-icons icon">filter_list</i>
+            <!-- <i class="icon f7-icons">chat_fill<span class="badge color-blue">1</span></i> -->
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content infinite-scroll-content infinite-scroll-content-mentor">
+      <div class="block" id="mentorSearchListArea">
+
+        <!-- <div class="card demo-card-header-pic">
+          <div style="background-image:url(http://guru-siksha.com/uploads/mentor/1543825242.png)" class="card-header align-items-flex-end" style="font-size: 22px;">Saikat Bhadury <span class="badge color-green" style="font-size: 21px;"><i class="material-icons" style="font-size: 20px;">star</i> 3.5</span></div>
+          <div class="card-content card-content-padding">
+            <p class="date text-color-blue">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ab molestiae saepe dolores, iure animi dicta accusamus repellendus fuga repellat mollitia aspernatur excepturi totam quas corporis minus veniam sunt? Quisquam.</p>
+           
+            <p> Teaching Subject
+              <ul>
+                <li>Body Building</li>
+                <li>Dance</li>
+                <li>Romance</li>
+              </ul>
+            </p>
+          </div>
+          <div class="card-footer"><a href="#" class="link">View Profile</a><a href="#" class="link">Select Mentor</a></div>
+        </div>
+        
+        <div class="card demo-card-header-pic">
+          <div style="background-image:url(http://guru-siksha.com/uploads/mentor/1544084322.png)" class="card-header align-items-flex-end"
+            style="font-size: 22px;">Sourav Samanta <span class="badge color-green" style="font-size: 21px;"><i class="material-icons"
+                style="font-size: 20px;">star</i> 3.5</span></div>
+          <div class="card-content card-content-padding">
+            <p class="date text-color-blue">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ab molestiae saepe
+              dolores, iure animi dicta accusamus repellendus fuga repellat mollitia aspernatur excepturi totam quas corporis
+              minus veniam sunt? Quisquam.</p>
+        
+            <p> Teaching Subject
+              <ul>
+                <li>Bally Dance</li>
+                <li>Hiphop</li>
+              </ul>
+            </p>
+          </div>
+          <div class="card-footer"><a href="#" class="link">View Profile</a><a href="#" class="link">Select Mentor</a></div>
+        </div> -->
+      </div>
+      
+      <div class="preloader infinite-scroll-preloader infinite-scroll-preloader-mentor"></div>
+      <div class="block" id="mentorFilter" style="display:none">
+        
+      </div>
+     
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function (e, page) {
+
+        $$('.infinite-scroll-content-mentor').on('infinite', function () {
+          if (!allowInfinite) return;
+          allowInfinite = false;
+          setTimeout(function () {
+            allowInfinite = true;
+            phonegapApp.mentorListSearchLazzy()
+            $$('.infinite-scroll-preloader-mentor').remove();
+            lastItemIndex = $$('.infinite-scroll-content-mentor div').length;
+            return;
+          }, 1000);
+        });
+
+      },
+    }
+  }
+
+</script>

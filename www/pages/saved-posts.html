@@ -1,0 +1,96 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Saved Posts</div>
+            </div>
+        </div>
+        <div class="page-content infinite-scroll-content ptr-content">
+            <div class="ptr-preloader">
+                <div class="preloader"></div>
+                <div class="ptr-arrow"></div>
+            </div>
+            <div class="block-title strong-number">Your Saved Post</div>
+            <div id="lblSavePostList"></div>
+            <!-- <div class="card demo-facebook-card">
+                <div class="card-header">
+                    <div class="demo-facebook-avatar"><img src="img/user.jpg" width="34"
+                            height="34" /></div>
+                    <div class="demo-facebook-name">John Doe</div>
+                    <div class="demo-facebook-date">Monday at 2:15 PM</div>
+                </div>
+                <div class="card-content card-content-padding">
+                    <p>What a nice photo i took yesterday!</p><img src="img/lorempixel.jpg" width="100%" />
+                    <p class="likes">Likes: 112 &nbsp;&nbsp; Comments: 43</p>
+                </div>
+                <div class="card-footer"><a href="#" class="link icon-only text-color-black"><i class="icon f7-icons">heart</i></a><a
+                        href="#" class="link icon-only text-color-black"><i class="icon f7-icons">chat</i></a><a href="#"
+                        class="link icon-only text-color-black"><i class="icon f7-icons">share</i></a></div>
+            </div>
+
+            <div class="card demo-facebook-card">
+                <div class="card-header">
+                    <div class="demo-facebook-avatar"><img src="img/user.jpg" width="34"
+                            height="34" /></div>
+                    <div class="demo-facebook-name">John Doe</div>
+                    <div class="demo-facebook-date">Monday at 2:15 PM</div>
+                </div>
+                <div class="card-content card-content-padding">
+                    <p>What a nice photo i took yesterday!</p><img src="img/lorempixel.jpg" width="100%" />
+                    <p class="likes">Likes: 112 &nbsp;&nbsp; Comments: 43</p>
+                </div>
+                <div class="card-footer"><a href="#" class="link icon-only text-color-black"><i class="icon f7-icons color-blue">heart_fill</i></a><a
+                        href="#" class="link icon-only text-color-black"><i class="icon f7-icons">chat</i></a><a href="#"
+                        class="link icon-only text-color-black"><i class="icon f7-icons">share</i></a></div>
+            </div> -->
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var $ptrContent = $$('.ptr-content');
+                $ptrContent.on('ptr:refresh', function (e) {
+                    // Emulate 2s loading
+                    setTimeout(function () {
+                        app.views["current"].router.refreshPage()
+                        // When loading done, we need to reset it
+                        app.ptr.done(); // or e.detail();
+                    }, 2000);
+                });
+
+
+
+                let allowInfinite = true;
+                let lastItemIndex = $$('.ptr-content div').length;
+                let maxItems = 200;
+                let itemsPerLoad = 20;
+
+                $$('.infinite-scroll-content').on('infinite', function () {
+                    if (!allowInfinite) return;
+                    allowInfinite = false;
+                    setTimeout(function () {
+                        allowInfinite = true;
+                        if (lastItemIndex >= maxItems) {
+                            app.infiniteScroll.destroy('.infinite-scroll-content');
+                            $$('.infinite-scroll-preloader').remove();
+                            return;
+                        }
+                        // phonegapApp.mentorNextPosts()
+                        $$('.infinite-scroll-preloader').remove();
+                        lastItemIndex = $$('.ptr-content div').length;
+                        return;
+                    }, 1000);
+                });
+
+            },
+        }
+    }
+</script>

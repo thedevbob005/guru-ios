@@ -1,0 +1,41 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Class Details</div>
+            </div>
+        </div>
+        <div class="toolbar tabbar no-shadow">
+            <div class="toolbar-inner">
+                <a href="#tab-current" class="tab-link tab-link-active">Regular</a>
+                <a href="#tab-demo" class="tab-link">Demo</a>
+                <a href="#tab-prvious" class="tab-link">Previous</a>
+            </div>
+        </div>
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="tab-current" class="page-content tab tab-active">
+                    <div class="block" id="tabRegularClassList">
+                        <p class="text-align-center"><b>Class day and time not seduled Or You did't book any class</b></p>
+                    </div>
+                </div>
+                <div id="tab-demo" class="page-content tab">
+                    <div class="block" id="tabDemoClassList">
+                        <p class="text-align-center"><b>Class day and time not seduled Or You did't book any class</b></p>
+                    </div>
+                </div>
+                <div id="tab-prvious" class="page-content tab">
+                    <div class="block" id="tabPreviousClassList">
+                        <p class="text-align-center"><b>No record found Or You did't book any class</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

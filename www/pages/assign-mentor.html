@@ -1,0 +1,140 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Mentor Assign</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div id="listing">
+                <div class="list">
+                    <ul>
+                        <li>
+                            <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                <select name="selectAssignSubjectList" id="selectAssignSubjectList">
+
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Select Subject</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                <select name="selectAssignDay" id="selectAssignDay">
+
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Select Day</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                <select name="selectAssignTimeFrom" id="selectAssignTimeFrom">
+
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Select Time Range From</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                <select name="selectAssignTimeTo" id="selectAssignTimeTo">
+
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Select Time Range To</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                <select name="selectTime" id="selectTutionType">
+                                    <option value="">Select Tution Type</option>
+                                    <option value="Home Tution">Home Tution</option>
+                                    <option value="Full Session Class">Full Session Class</option>
+                                    <option value="Topic / Section Wise Class">Topic / Section Wise Class</option>
+                                    <option value="Query Resolve Class">Query Resolve Class</option>
+                                    <option value="Last Minutes Preparation">Last Minutes Preparation</option>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Tution Type</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <button class="col button button-outline button-round color-red" onclick="phonegapApp.searchMentor()">Search Mentor</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="result" class="block" >
+
+                <div class="row" id="generateResult">
+                    
+                </div>
+
+                <!-- <div class="row" id="generateResult">
+
+
+                    <div class="col">
+                        <div class="elevation-demo elevation-6 elevation-hover-24 elevation-pressed-12 elevation-transition text-align-center">
+                            <img src="img/user2.jpg" alt="" class="suggestion-user-image">
+                            <div class="title module line-clamp" style="font-size:12px;line-height:1;margin-bottom: 5px;">Suparna
+                                Halder</div>
+                            <div class="row" style="padding: 7px">
+                                <button class="col button button-small button-fill color-blue">Select</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col">
+                        <div class="elevation-demo elevation-6 elevation-hover-24 elevation-pressed-12 elevation-transition text-align-center">
+                            <img src="img/user2.jpg" alt="" class="suggestion-user-image">
+                            <div class="title module line-clamp" style="font-size:12px;line-height:1;margin-bottom: 5px;">Suparna
+                                Halder</div>
+                            <div class="row" style="padding: 7px">
+                                <button class="col button button-small button-fill color-blue">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="elevation-demo elevation-6 elevation-hover-24 elevation-pressed-12 elevation-transition text-align-center">
+                            <img src="img/user2.jpg" alt="" class="suggestion-user-image">
+                            <div class="title module line-clamp" style="font-size:12px;line-height:1;margin-bottom: 5px;">Suparna
+                                Halder</div>
+                            <div class="row" style="padding: 7px">
+                                <button class="col button button-small button-fill color-blue">Select</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

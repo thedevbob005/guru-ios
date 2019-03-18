@@ -1,0 +1,77 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Preffered Location</div>
+
+            </div>
+        </div>
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#historylocation" class="tab-link">History</a>
+                <a href="#createlocation" class="tab-link tab-link-active">Create</a>
+            </div>
+        </div>
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="historylocation" class="page-content tab">
+                    <div class="block" id="lblSeduleHistory">
+                        <div class="list">
+                            <ul id="listMentroLocation">
+                                <!-- <li class="swipeout deleted-callback">
+                                    <div class="item-content swipeout-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Swipe left on me please</div>
+                                        </div>
+                                    </div>
+                                    <div class="swipeout-actions-right">
+                                        <a href="#" class="swipeout-delete">Delete</a>
+                                    </div>
+                                </li> -->
+                                <!-- <li><a href="#" onclick="phonegapApp.deleteMentorTime(21)" class="item-link item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title"><strong>Sunday</strong> 12:22 to 14:22</div>
+                                            <div class="item-after"><i class="material-icons md-only icon color-red">delete_forever</i></div>
+                                        </div>
+                                    </a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="createlocation" class="page-content tab tab-active">
+                    <div class="list no-hairlines-md block">
+                        <ul>
+                            <li>
+                                <a class="item-link smart-select smart-select-init" data-open-in="popup" data-searchbar="true"
+                                    data-searchbar-placeholder="Search car">
+                                    <select id="ddlWishToRelocate" name="ddlWishToRelocate" multiple>
+                                        
+                                    </select>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Select Location</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <button class="button color-green button-fill-md col" onclick="phonegapApp.submitAreaRelocation()">Save Location</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

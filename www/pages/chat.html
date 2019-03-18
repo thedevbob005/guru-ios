@@ -1,0 +1,40 @@
+<template>
+    <div class="page" data-name="chat-listing">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">
+                    Gurusiksha Admin
+                </div>
+                <!-- <div class="right">
+                    <a href="#" class="link icon-only popover-open" data-popover=".popover-more">
+                        <i class="icon f7-icons">more_vertical</i>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+        <div class="toolbar messagebar">
+            <div class="toolbar-inner">
+                <a class="link sheet-open" href="#"  data-sheet=".chat-sheet">
+                    <i class="icon material-icons md-only">attach_file</i>
+                </a>
+                <div class="messagebar-area">
+                    <textarea class="resizable" placeholder="Message" id="txtSendAdminMessage"></textarea>
+                </div><a class="link send-link" href="#" onclick="phonegapApp.sendMessage()"><i class="icon f7-icons">paper_plane</i></a>
+            </div>
+        </div>
+        <div class="page-content messages-content">
+            <div class="messages messages-init" data-new-messages-first="true" id="chatResult">
+                
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

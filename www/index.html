@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>Gurusiksha</title>
+  <link href="https://fonts.googleapis.com/css?family=Mali:200,300,400" rel="stylesheet">
+  <link rel="stylesheet" href="framework7/css/framework7.min.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    .login-register-input-text{
+      border: 1px solid #fff;
+      border-radius: 4px; 
+      box-sizing: border-box;
+      background: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" style="font-family: 'Mali', cursive;" class="color-theme-orange">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <div class="views tabs ios-edges">
+
+      <div class="toolbar tabbar main-navigation no-shadow toolbar-bottom-md">
+        <div class="toolbar-inner">
+          <a href="#view-home" class="tab-link tab-link-active">
+            <i class="f7-icons ios-only icon">home</i>
+            <i class="material-icons md-only icon">home</i>
+          </a>
+          <a href="#view-catalog" class="tab-link" id="toolBarSearch" style="display: none">
+            <i class="f7-icons ios-only icon">search</i>
+            <i class="material-icons md-only icon">search</i>
+          </a>
+          <a href="#view-create-post" class="tab-link">
+            <i class="f7-icons ios-only icon">add_round</i>
+            <i class="material-icons md-only  icon">add_circle</i>
+          </a>
+          <a href="#view-settings" class="tab-link" onclick="phonegapApp.notificationRead()">
+            <i class="f7-icons ios-only  icon">bell_fill</i>
+            <i class="material-icons md-only icon">notifications<span class="badge color-blue" id="notificationCount">0</span></i>
+            <span class="tabbar-label"></span>
+          </a>
+          <a href="#view-profile" class="tab-link">
+            <i class="f7-icons ios-only icon">person</i>
+            <i class="material-icons md-only  icon size-22">face</i>
+            <span class="tabbar-label"></span>
+          </a>
+        </div>
+      </div>
+
+      <div id="view-home" class="view view-main tab tab-active">
+        <div class="page" data-name="home">
+
+          <!-- Top Navbar -->
+          <div class="navbar no-shadow">
+            <div class="navbar-inner">
+              <div class="left title">Gurusiksha</div>
+              <div class="right">
+                <a href="/chat-listing/" class="link icon-only">
+                  <i class="material-icons icon">chat<span class="badge color-blue" id="lblChatCount">0</span></i>
+                  <!-- <i class="icon f7-icons">chat_fill<span class="badge color-blue">1</span></i> -->
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scrollable page content-->
+          <div class="page-content ptr-content ptr-content-home infinite-scroll-content infinite-scroll-content-home">
+            <div class="ptr-preloader">
+              <div class="preloader"></div>
+              <div class="ptr-arrow"></div>
+            </div>
+            <div id="timeLineFollowingHome" style="display: none;">
+              <div class="block">
+                <div class="row">
+                  <div class="left">Suggestion for You</div>
+                  <div class="right">
+                    <!-- <a href="#" class="link">See All</a> -->
+                  </div>
+                </div>
+                <div class="block-footer">
+                  <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="10" data-slides-per-view="3" class="swiper-container swiper-init demo-swiper">
+                    <div class="swiper-wrapper" id="lblMentorListForFollow">
+
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+            <div id="timelinePostGurusiksha">
+             
+            </div>
+
+            
+
+            
+            <!-- <div class="block-title">Panels</div>
+            <div class="block block-strong">
+              <div class="row">
+                <div class="col-50">
+                  <a href="#" class="button button-raised button-fill panel-open" data-panel="left">Left Panel</a>
+                </div>
+                <div class="col-50">
+                  <a href="#" class="button button-raised button-fill panel-open" data-panel="right">Right Panel</a>
+                </div>
+              </div>
+            </div> -->
+            <div class="preloader infinite-scroll-preloader infinite-scroll-preloader-home" id="lblLoaderForOwnPost"></div>
+            
+          </div>
+          <div class="preloader infinite-scroll-preloader infinite-scroll-preloader-home" id="lblLoaderForOwnPost"></div>
+          <!-- <div class="fab fab-extended fab-right-top color-red">
+            <a href="tel:8809279799" class="link external">
+              <i class="icon f7-icons">phone_fill</i>
+            </a>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Catalog View -->
+      <div id="view-catalog" class="view tab">
+        <!-- Catalog page will be loaded here dynamically from /catalog/ route -->
+      </div>
+
+      <!-- Settings View -->
+      <div id="view-settings" class="view tab">
+      </div>
+
+      <!-- Profile View -->
+      <div id="view-profile" class="view tab">
+      </div>
+
+      <!-- Create Post  -->
+      <div id="view-create-post" class="view tab">
+      </div>
+
+      <!-- Create Explore  -->
+      <div id="view-explore" class="view tab">
+      </div>
+
+    </div>
+
+
+
+
+    <!-- Views/Tabs container -->
+
+
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="my-login-screen">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+          <div class="left" style="margin-top: 10%;margin-left: 4%;">
+            <a href="javascript:phonegapApp.openLoginRegister()" class="link">
+              <i class="icon f7-icons color-orange">close</i>
+            </a>
+          </div>
+          <div class="page-content login-screen-content" style="padding-top: 42px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <img src="img/logo.png" width="80">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input" style="margin-bottom: 20px;">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Mobile Number</div>
+                      <input type="number" placeholder="Enter Your Mobile Number" style="border: 1px solid #fff;border-radius: 4px; box-sizing: border-box; background: #fff;height: 120%;"
+                        id="txtMobileNumber">
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.login()">Login</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Screen Student And Gurdian -->
+    <div class="login-screen" id="my-login-screen-student-login">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+          <div class="left" style="margin-top: 10%;margin-left: 4%;">
+            <a href="javascript:phonegapApp.openLoginRegister()" class="link">
+              <i class="icon f7-icons color-orange">close</i>
+            </a>
+          </div>
+          <div class="page-content login-screen-content" style="padding-top: 42px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <img src="img/logo.png" width="80">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input" style="margin-bottom: 20px;">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Student Id</div>
+                      <input type="text" placeholder="Enter Student Id Here" style="border: 1px solid #fff;border-radius: 4px; box-sizing: border-box; background: #fff;height: 120%;"
+                        id="txtStudentId">
+                    </div>
+                  </li>
+    
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.studentLogin()">Login</button>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input text-align-center">
+                    <div class="item-inner">
+                      <a class="link" onclick="phonegapApp.openForgotStudentIdScreen()">Forgot Student Id?</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Login Screen Student And Gurdian -->
+    <div class="login-screen" id="forgot-studentid-screen">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+          <div class="left" style="margin-top: 10%;margin-left: 4%;">
+            <a href="javascript:phonegapApp.openLoginRegister()" class="link">
+              <i class="icon f7-icons color-orange">close</i>
+            </a>
+          </div>
+          <div class="page-content login-screen-content" style="padding-top: 42px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <img src="img/logo.png" width="80">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input" style="margin-bottom: 20px;">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Enter Mobile Number</div>
+                      <input type="text" placeholder="Enter Mobile Number Student For Recover Your Password" style="border: 1px solid #fff;border-radius: 4px; box-sizing: border-box; background: #fff;height: 120%;"
+                        id="txtMobileNumberForgot">
+                    </div>
+                  </li>
+    
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.verifyStudentMobile()">Recover Your Student Id</button>
+                    </div>
+                  </li>
+    
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <a href="javascript:phonegapApp.openForgotStudentIdScreen()"></a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Register Screen Screen -->
+    <div class="login-screen" id="my-login-register-screen">
+      <div class="view">
+        <div class="page-content">
+          <div class="block" style="width: 100%;margin: 0;padding: 0;">
+            <img src="img/gurusiksha-banner-login.jpg" style="width: 100%">
+          </div>
+          <div class="block" style="font-size: 14px;text-align: justify;">
+            In Gurusiksha we provide quality coaching and training services to our student’s
+            online .We provide online tuition platform for providing coaching and training to
+            our students. This is an innovative and unique approach to solve the queries of
+            the students in Kolkata. Here students will get the opportunity to resolve their
+            queries by contacting with their online tutors any time.
+          </div>
+          <div class="block">
+            <div class="row">
+              <div class="col">
+                <button class="col button button-raised button-fill color-green" onclick="phonegapApp.openSLogin()">Students Sign-in</button>
+              </div>
+            </div>
+            <div class="row"  style="margin-top: 12px">
+              <div class="col">
+                <button class="col button button-raised button-fill color-pink" onclick="phonegapApp.openLogin()">Mentor & Guardians Sign-in</button>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 12px">
+              <div class="col">
+                <button class="col button button-raised color-red button-outline" onclick="phonegapApp.openStudentSignupScreen()">Signup
+                  As Student</button>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 12px">
+              <div class="col">
+                <button class="col button button-raised color-blue button-outline" onclick="phonegapApp.openGurdiansSignupScreen()">Signup
+                  As Guardians</button>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 12px">
+              <div class="col">
+                <button class="col button button-raised color-orange button-outline" onclick="phonegapApp.openMentorSignupScreen()">Signup
+                  As Mentors</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Student Sign-up Screen -->
+    <div class="login-screen" id="student-signup-screen">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+
+          <div class="page-content login-screen-content" style="padding-top: 0px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <div align="left" style="margin-left: 20px;">
+                <a href="javascript:phonegapApp.openLoginRegister()" class="link">
+                  <i class="icon f7-icons color-orange">close</i>
+                </a>
+              </div>
+              <img src="img/logo.png" width="120">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Your Contact Number</div>
+                      <input type="number" placeholder="Enter Your Contact Number" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtSPhone">
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Your Email</div>
+                      <input type="email" placeholder="Enter Your Email" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtSRegisterEmail">
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label"  style="text-align: left;">Enter Your Pincode</div>
+                      <div class="item-input-wrap">
+                        <input id="autocomplete-dropdown-ajax" type="text" placeholder="Pincode Or Locality"  style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.studentSignup()">Sign
+                        Up</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Signup Stape 1 -->
+
+    <div class="login-screen" id="student-signup-stape1">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+
+          <div class="page-content login-screen-content" style="padding-top: 0px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <div align="left" style="margin-left: 20px;">
+              </div>
+              <img src="img/logo.png" width="120">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Name</div>
+                      <input type="text" placeholder="Enter Your Name" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtStudentName">
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Date Of Birth</div>
+                      <input type="date" placeholder="Enter Your Email" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtStudentDateOfBirth">
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Gender</div>
+                      <select name="ddlGender" id="ddlGender" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                        <option value="" selected hidden>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Address</div>
+                      <textarea name="txtStudentAddress" id="txtStudentAddress" cols="30" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff; width: 100%"
+                        placeholder="Enter Your Address"></textarea>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Pincode</div>
+                      <input type="number" placeholder="Enter Pincode" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtStudentPinCode">
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Guardian's Name</div>
+                      <input type="text" placeholder="Enter Guardian's Name" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGurdianName">
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Guardian's Phone</div>
+                      <input type="number" placeholder="Enter Guardian's Phone" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGurdianPhone">
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.studentSignupStape2()">Next</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Signup Stape 2 -->
+    <div class="login-screen" id="student-signup-stape2">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+
+          <div class="page-content login-screen-content" style="padding-top: 0px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <div align="left" style="margin-left: 20px;">
+              </div>
+              <img src="img/logo.png" width="120">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">School Name</div>
+                      <input type="text" placeholder="Enter School Name" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtStudentSchoolName">
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Class</div>
+                      <select name="ddlStudentClass" id="ddlStudentClass" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Board Name</div>
+                      <select name="txtBoardName" id="txtBoardName" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                        <option value="" selected hidden>Select Board</option>
+                        <option value="1">ICSC</option>
+                        <option value="2">CBSC</option>
+                        <option value="3">WBCHSE</option>
+                        <option value="4">WBBSE</option>
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject1</div>
+                      <select name="ddlStudentSubject1" id="ddlStudentSubject1" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject2</div>
+                      <select name="ddlStudentSubject2" id="ddlStudentSubject2" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject3</div>
+                      <select name="ddlStudentSubject3" id="ddlStudentSubject3" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject4</div>
+                      <select name="ddlStudentSubject4" id="ddlStudentSubject4" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+
+                  <!-- <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Day Preferance</div>
+                      <select name="ddlStudentDayPreferance" id="ddlStudentDayPreferance" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li> -->
+
+                  <!-- <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Time Preferance</div>
+                      <select name="ddlStudentTimePreferance" id="ddlStudentTimePreferance" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li> -->
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Language Of Communication</div>
+                      <select name="ddlStudentLanguage" id="ddlStudentLanguage" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.registerStudentComplete()">Save</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Gurdians Sign-up Screen -->
+    <div class="login-screen" id="gurdians-signup-screen">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+
+          <div class="page-content login-screen-content" style="padding-top: 0px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="left" style="margin-top: 10%;margin-left: 4%;">
+              <a href="javascript:phonegapApp.openLoginRegister()" class="link">
+                <i class="icon f7-icons color-orange">close</i>
+              </a>
+            </div>
+            <div class="login-screen-title text-color-green">
+              <img src="img/logo.png" width="80">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Student Id</div>
+                      <input type="text" placeholder="Enter Student Id" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGStudentId">
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label" style="text-align: left;">Area</div>
+                      <div class="item-input-wrap">
+                        <input id="autocomplete-dropdown-ajax-typeahead-gurdians" type="text" placeholder="Location Area" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Your Name</div>
+                      <input type="text" placeholder="Enter Your Name" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGRegisterName">
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Your Contact Number</div>
+                      <input type="number" placeholder="Enter Your Contact Number" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGPhone">
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Your Email</div>
+                      <input type="email" placeholder="Enter Your Email" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGEmail">
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Address</div>
+                      <textarea name="txtGAddress" id="txtGAddress" cols="30" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff; width: 100%"
+                        placeholder="Enter Your Address"></textarea>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Pincode</div>
+                      <input type="number" placeholder="Enter Your Pincode" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGpin">
+                    </div>
+                  </li>
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Relation With Student</div>
+                      <input type="text" placeholder="Enter Relation" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtGRelation">
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Gender</div>
+                      <select name="ddlGGender" id="ddlGGender" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                        <option value="" selected hidden>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.gurdiansSignup()">Sign
+                        Up</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentor Sign-up Screen -->
+    <div class="login-screen" id="mentor-signup-screen">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+
+          <div class="page-content login-screen-content" style="padding-top: 0px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <div align="left" style="margin-left: 20px;">
+                <a href="javascript:phonegapApp.openLoginRegister()" class="link">
+                  <i class="icon f7-icons color-orange">close</i>
+                </a>
+              </div>
+              <img src="img/logo.png" width="120">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Your Contact Number</div>
+                      <input type="number" placeholder="Enter Your Contact Number" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtMPhone" required validate>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Your Email</div>
+                      <input type="email" placeholder="Enter Your Email" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtMRegisterEmail" required validate>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label" style="text-align: left;">Area</div>
+                      <div class="item-input-wrap">
+                        <input id="autocomplete-dropdown-ajax-typeahead-mentor" type="text" placeholder="Location Area" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;" required validate>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.mentorSignup()">Sign
+                        Up</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentor Sign-up Screen Step 2 -->
+    <div class="login-screen" id="mentor-signup-screen-step2">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+
+          <div class="page-content login-screen-content" style="padding-top: 0px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <div align="left" style="margin-left: 20px;">
+                <a href="javascript:phonegapApp.openLoginRegister()" class="link">
+                  <i class="icon f7-icons color-orange">close</i>
+                </a>
+              </div>
+              <img src="img/logo.png" width="120">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Name</div>
+                      <input type="text" placeholder="Enter Your Name" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtMentorName" required validate>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Date Of Birth</div>
+                      <input type="date" placeholder="Enter Your Email" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtMentorDateOfBirth" required validate>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Gender</div>
+                      <select name="ddlMentorGender" id="ddlMentorGender" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;" required validate>
+                        <option value="" selected hidden>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Address</div>
+                      <textarea name="txtMentorAddress" id="txtMentorAddress" cols="30" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff; width: 100%"
+                        placeholder="Enter Your Address" required validate></textarea>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Pincode</div>
+                      <input type="number" placeholder="Enter Pincode" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtMentorPinCode" required validate>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.mentorSignupStape3()">Next</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentor Signup Stape 3 -->
+    <div class="login-screen" id="mentor-signup-screen-step3">
+      <div class="view">
+        <div class="page" style="background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+
+          <div class="page-content login-screen-content" style="padding-top: 0px;background: #f0efeb url('img/login-bg.png') no-repeat fixed center;">
+            <div class="login-screen-title text-color-green">
+              <div align="left" style="margin-left: 20px;">
+              </div>
+              <img src="img/logo.png" width="120">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">About Me</div>
+                      <div class="item-input-wrap">
+                        <textarea name="txtAboutYourSelf" id="txtAboutYourSelf" placeholder="Enter Bio / About Yourself" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                        id="txtAboutYourSelf" required validate maxlength="240"></textarea>
+                        <span class="input-clear-button"></span>
+                        <div class="item-input-info">Maximum 240 Charecters Allow</div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Associated School</div>
+                      <div class="item-input-wrap">
+                        <input type="text" placeholder="Enter Associated School Name" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                          id="txtAssociatedSchool">
+                        <span class="input-clear-button"></span>
+                        <div class="item-input-info">Associated School Not Mandatory </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Achievment</div>
+                      <div class="item-input-wrap">
+                        <textarea name="txtAchievment" id="txtAchievment" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"></textarea>
+                        <span class="input-clear-button" required validate maxlength="240"></span>
+                        <div class="item-input-info">Maximum 240 Charecters Allow </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject1</div>
+                      <select name="ddlMentorSubject1" id="ddlMentorSubject1" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;" required validate>
+                      </select>
+                    </div>
+                  </li>
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject2</div>
+                      <select name="ddlMentorSubject2" id="ddlMentorSubject2" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;" required validate>
+                      </select>
+                    </div>
+                  </li>
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject3</div>
+                      <select name="ddlMentorSubject3" id="ddlMentorSubject3" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;" required validate>
+                      </select>
+                    </div>
+                  </li>
+
+
+                  <!-- <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject2</div>
+                      <select name="ddlStudentSubject2" id="ddlStudentSubject2" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+    
+    
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject3</div>
+                      <select name="ddlStudentSubject3" id="ddlStudentSubject3" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li>
+    
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Subject4</div>
+                      <select name="ddlStudentSubject4" id="ddlStudentSubject4" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;">
+                      </select>
+                    </div>
+                  </li> -->
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Language Of Communication</div>
+                      <div class="item-input-wrap">
+                        <select name="ddlMentorLanguage" id="ddlMentorLanguage" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                          required validate>
+                        </select>
+                        <span class="input-clear-button"></span>
+                        <div class="item-input-info">Language Of Communication Mandatory </div>
+                      </div>
+                    </div>
+                  </li>
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Qualification</div>
+                      <div class="item-input-wrap">
+                        <input type="text" placeholder="Enter Qualification" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                          id="txtQualification" required validate>
+                        <span class="input-clear-button"></span>
+                        <div class="item-input-info">Qualification Mandatory </div>
+                      </div>
+                    </div>
+                  </li>
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Experience</div>
+                      <div class="item-input-wrap">
+                        <input type="text" placeholder="Enter Experience" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                          id="txtExperience" required validate>
+                        <span class="input-clear-button"></span>
+                        <div class="item-input-info">Experience Mandatory </div>
+                      </div>
+                    </div>
+                  </li>
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <div class="item-title item-label" style="text-align: left;">Mode Of Teaching</div>
+                      <div class="item-input-wrap">
+                        <select name="ddlMentorTeachType" id="ddlMentorTeachType" style="border: 1px solid #fff;border-radius: 4px;box-sizing: border-box;background: #fff;"
+                          id="txtExperience" required validate>
+                          <option value="" selected hidden>Select Mode Of Teaching</option>
+                          <option value="Online">Online</option>
+                          <option value="Offline">Offline</option>
+                        </select>
+                        <span class="input-clear-button"></span>
+                        <div class="item-input-info">Mode Of Teaching Mandatory </div>
+                      </div>
+                    </div>
+                  </li>
+
+
+                  <li class="item-content item-input">
+                    <div class="item-inner color-white">
+                      <button class="col-75 button button-raised button-fill color-orange button-big" onclick="phonegapApp.registerMentorComplete()">Save</button>
+                    </div>
+                  </li>
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="popover popover-logout" onclick="phonegapApp.logout()">
+      <div class="popover-inner">
+        <div class="row">
+          <div class="col-30 col-30 text-align-center"><img alt="" id="userImageLogout" class="profile-user-image" width="40" height="40"></div>
+          <div class="col-70 row text align-center" style="margin-top: 5%;margin-left: -13px;">
+            <div class="title text-color-blue"><span id="lblLogoutLink"></span> (Logout)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="popover popover-more">
+      <div class="popover-inner">
+        <div class="list">
+          <ul>
+            <li><a class="list-button item-link text-color-black" href="#">Profile</a></li>
+            <li><a class="list-button item-link text-color-black" href="#">Unfollow</a></li>
+            <li><a class="list-button item-link text-color-black" href="#">Block</a></li>
+            <li><a class="list-button item-link text-color-black" href="#">Report</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="popover popover-image-select">
+      <div class="popover-inner">
+        <div class="list">
+          <ul>
+            <li><a class="list-button item-link popover-close" onclick="phonegapApp.openGellery()">Gallery</a></li>
+            <li><a class="list-button item-link popover-close" onclick="phonegapApp.openCamera()">Camera</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="popover post-image-select">
+      <div class="popover-inner">
+        <div class="list">
+          <ul>
+            <li><a class="list-button item-link popover-close" onclick="phonegapApp.openGalleryPost()">Gallery</a></li>
+            <li><a class="list-button item-link popover-close" onclick="phonegapApp.openCameraPost()">Camera</a></li>
+            <!--<li><a class="list-button item-link popover-close" onclick="phonegapApp.openDocument()">PDF</a></li>
+            <li><a class="list-button item-link popover-close" onclick="phonegapApp.openYoutubeLink()">Youtube Link</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Panel -->
+    <div class="panel panel-right panel-cover" id="profile-panel">
+      <div class="view">
+        <div class="page">
+          <div class="navbar no-shadow">
+            <div class="navbar-inner">
+              <div class="title" id="lblpanelUserName"></div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="list">
+              <ul>
+                <!-- <li id="mentorBoardAndClass" style="display: none;">
+                  <a href="/board-and-class/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue">class</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Board &amp; Class Selecteion</div>
+                      </div>
+                    </div>
+                  </a>
+                </li> -->
+                <li id="mentorSubjectList" style="display: none;">
+                  <a href="/mentor-subjects/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue">subject</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Subject Managment</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li id="mentorWishToRelocate" style="display: none;">
+                  <a href="/wish-to-relocate/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue">location_searching</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Preffered Location</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li id="menuClassTimeTable" style="display: none;">
+                  <a href="/mentor-class-time/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue">info</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Class Time Table</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+                <li id="menuSendAssignmentMentor" style="display: none;">
+                  <a href="/send-assignment/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue">folder_special</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Send Assignment</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+
+                <li id="menuAssignmentStudent" style="display: none;">
+                  <a href="/student-assignment/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue">folder_special</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Assignment</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+                <!-- <li id="menAssignMentor" style="display: none;">
+                  <a href="/assign-mentor/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">select_all</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Select Subject / Mentor</div>
+                      </div>Current Assessment
+                    </div>
+                  </a>
+                </li> -->
+
+                <li id="menuClassDetails" style="display: none;">
+                  <a href="/class-details/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">info</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Class Details</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+                <li id="menuSaveContent" style="display: none;">
+                  <a href="/saved-posts/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">save_alt</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Saved Content</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li id="menuCurrentAssigment" style="display: none;">
+                  <a href="/current-assigment/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">class</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Current Assessment</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li id="menuProgressReport" style="display: none;">
+                  <a href="/progress-report/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">equalizer</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Progress Report</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <!-- <li id="menuOfferSubject" style="display: none;">
+                  <a href="/offer-subject/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">loyalty</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Offer Subject</div>
+                      </div>
+                    </div>
+                  </a>
+                </li> -->
+                <li id="menuSpecialQuery" style="display: none;">
+                  <a href="/special-query/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">supervisor_account</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Mentor List</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li id="menuMentorRate" style="display: none;">
+                  <a href="/mentor-rate/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">star_fill</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Mentor Rate</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li id="menuStudentList" style="display: none;">
+                  <a href="/student-list/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media"><i class="material-icons icon text-color-blue" style="font-size: 29px;">supervisor_account</i></div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Student List</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="/about/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media">
+                        <i class="material-icons icon text-color-blue" style="font-size: 29px;">touch_app</i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">About App</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/terms/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media">
+                        <i class="material-icons icon text-color-blue" style="font-size: 29px;">assessment</i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Terms and Conditions</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/privacy/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media">
+                        <i class="material-icons icon text-color-blue" style="font-size: 29px;">gavel</i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Privacy</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/how-it-works/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media">
+                        <i class="material-icons icon text-color-blue" style="font-size: 29px;">receipt</i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">How It Works</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="/enquiry/" class="panel-close" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media">
+                        <i class="material-icons icon text-color-blue" style="font-size: 29px;">mail_outline</i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Enquiry</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:8809279799" class="panel-close link external" data-view="#view-profile">
+                    <div class="item-content">
+                      <div class="item-media">
+                        <i class="material-icons icon text-color-blue" style="font-size: 29px;">phone_round_fill</i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title text-color-black">Call Us</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <!-- <li  id="menuSettings" style="display: none;">
+                <a href="/user-settings/" class="panel-close" data-view="#view-profile">
+                  <div class="item-content">
+                    <div class="item-media"><i class="icon f7-icons text-color-blue">settings</i></div>
+                    <div class="item-inner">
+                      <div class="item-title text-color-black">Settings</div>
+                    </div>
+                  </div>
+                </a>
+              </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet Modal For Share File In Chat -->
+    <div class="sheet-modal chat-sheet">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right"><a class="link sheet-close" href="#">Close</a></div>
+        </div>
+      </div>
+      <div class="sheet-modal-inner">
+        <div class="block">
+          <h4>Choose Attachment</h4>
+          <div class="row">
+            <div class="col text-align-center">
+              <img src="img/camera.png" width="95" onclick="phonegapApp.openCameraChat()">
+            </div>
+            <div class="col text-align-center">
+              <img src="img/picture.png" width="95" onclick="phonegapApp.openGelleryChat()">
+            </div>
+            <!-- <div class="col text-align-center">
+              <img src="img/pdf.png" width="95" onclick="phonegapApp.openDocumentChat()">
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Star Rate State -->
+    <div class="sheet-modal star-rate">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right"><a class="link sheet-close" href="#">Done</a></div>
+        </div>
+      </div>
+      <div class="sheet-modal-inner">
+        <div class="block">
+          <div class="block">
+            <h4>Rate This Mentor</h4>
+            <form id="ratingsForm">
+              <div class="row">
+                <div class="col-100">
+                  <div class="stars">
+                    <input type="radio" name="star" class="star-1" id="star-1" />
+                    <label class="star-1" for="star-1" onclick="phonegapApp.rateMentor(1)">1</label>
+                    <input type="radio" name="star" class="star-2" id="star-2" />
+                    <label class="star-2" for="star-2" onclick="phonegapApp.rateMentor(2)">2</label>
+                    <input type="radio" name="star" class="star-3" id="star-3" />
+                    <label class="star-3" for="star-3" onclick="phonegapApp.rateMentor(3)">3</label>
+                    <input type="radio" name="star" class="star-4" id="star-4" />
+                    <label class="star-4" for="star-4" onclick="phonegapApp.rateMentor(4)">4</label>
+                    <input type="radio" name="star" class="star-5" id="star-5" />
+                    <label class="star-5" for="star-5" onclick="phonegapApp.rateMentor(5)">5</label>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- <div class="row">
+                        <div class="col-50">Noodle soup</div>
+                        <div class="col-50">
+                          <div class="stars">
+                            <input type="radio" name="star" class="star-1" id="star-1" />
+                            <label class="star-1" for="star-1">1</label>
+                            <input type="radio" name="star" class="star-2" id="star-2" />
+                            <label class="star-2" for="star-2">2</label>
+                            <input type="radio" name="star" class="star-3" id="star-3" />
+                            <label class="star-3" for="star-3">3</label>
+                            <input type="radio" name="star" class="star-4" id="star-4" />
+                            <label class="star-4" for="star-4">4</label>
+                            <input type="radio" name="star" class="star-5" id="star-5" />
+                            <label class="star-5" for="star-5">5</label>
+                            <span></span>
+                          </div>
+                        </div>
+                      </div> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- This Section For Class Rate -->
+    <div class="sheet-modal star-rate-class">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right"><a class="link sheet-close" href="#">Done</a></div>
+        </div>
+      </div>
+      <div class="sheet-modal-inner">
+        <div class="block">
+          <div class="block">
+            <h4>Rate This Course</h4>
+            <form id="ratingsForm">
+              <div class="row">
+                <div class="col-100">
+                  <div class="stars">
+                    <input type="radio" name="star" class="star-1" id="star-1" />
+                    <label class="star-1" for="star-1" onclick="phonegapApp.rateClass(1)">1</label>
+                    <input type="radio" name="star" class="star-2" id="star-2" />
+                    <label class="star-2" for="star-2" onclick="phonegapApp.rateClass(2)">2</label>
+                    <input type="radio" name="star" class="star-3" id="star-3" />
+                    <label class="star-3" for="star-3" onclick="phonegapApp.rateClass(3)">3</label>
+                    <input type="radio" name="star" class="star-4" id="star-4" />
+                    <label class="star-4" for="star-4" onclick="phonegapApp.rateClass(4)">4</label>
+                    <input type="radio" name="star" class="star-5" id="star-5" />
+                    <label class="star-5" for="star-5" onclick="phonegapApp.rateClass(5)">5</label>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- <div class="row">
+                            <div class="col-50">Noodle soup</div>
+                            <div class="col-50">
+                              <div class="stars">
+                                <input type="radio" name="star" class="star-1" id="star-1" />
+                                <label class="star-1" for="star-1">1</label>
+                                <input type="radio" name="star" class="star-2" id="star-2" />
+                                <label class="star-2" for="star-2">2</label>
+                                <input type="radio" name="star" class="star-3" id="star-3" />
+                                <label class="star-3" for="star-3">3</label>
+                                <input type="radio" name="star" class="star-4" id="star-4" />
+                                <label class="star-4" for="star-4">4</label>
+                                <input type="radio" name="star" class="star-5" id="star-5" />
+                                <label class="star-5" for="star-5">5</label>
+                                <span></span>
+                              </div>
+                            </div>
+                          </div> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Assignment Popover Start -->
+      <div class="popover popover-sendassignment">
+        <div class="popover-inner">
+          <div class="list">
+            <ul>
+              <li><a class="list-button item-link" href="#" onclick="phonegapApp.assignmetImageUpload()">Image</a></li>
+              <!-- <li><a class="list-button item-link" href="#" onclick="phonegapApp.assignmetPDFUpload()">PDF</a></li> -->
+            </ul>
+          </div>
+        </div>
+    <!-- Assignment Popover End -->
+
+
+    <!-- Filter Popup -->
+    <div class="popup popup-filter">
+      <div class="page">
+        <div class="navbar no-shadow">
+          <div class="navbar-inner">
+            <div class="left title">Filter</div>
+            <div class="right">
+              <a href="#" class="link popup-close">
+                <i class="icon f7-icons">close_round_fill</i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="block">
+            <div class="list inline-labels no-hairlines-md">
+              <ul>
+                <!-- <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">calendar</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Days</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select placeholder="Select days..."  id="ddlFilterDays"> </select>
+                    </div>
+                  </div>
+                </li> -->
+                <!-- <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">time_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Time</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <input type="time" id="txtFilterTime">
+                    </div>
+                  </div>
+                </li> -->
+                <!-- <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">time_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Hour</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select  id="ddlFilterHour"></select>
+                    </div>
+                  </div>
+                </li> -->
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">star_round_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Subject</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlFilterSubject">
+
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">world_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Area</div>
+                    <div class="item-input-wrap ">
+                      <input type="text" id="txtFilterArea">
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">collection_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Class</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlFilterClass">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">data_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Board</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlFilterBoard">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="icon f7-icons">favorites_fill</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">By Mode Of Learning</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlFilterLearning">
+                        <option value="Offline">Offline</option>
+                        <option value="Online">Online</option>
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                
+                <li class="item-content item-input">
+                  <button class="button color-green button-fill-md col" onclick="phonegapApp.filterMentor()">Apply Filter</button>
+                </li>
+                <li class="item-content item-input" id="btnResetFilter" style="display:none;">
+                  <button class="button color-red button-fill-md col" onclick="phonegapApp.resetFilter()">Reset Filter</button>
+                </li>
+              </ul>
+            </div>
+            <p align="center"><b>For specific requirement <a class="link external" href="tel:8809279799">call now</a></b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+
+    <!-- Mentor Select Bookign Demo Class -->
+    <div class="popup popup-democlass">
+      <div class="page">
+        <div class="navbar no-shadow">
+          <div class="navbar-inner">
+            <div class="left title">Booking Demo Class</div>
+            <div class="right">
+              <a href="#" class="link popup-close">
+                <i class="icon f7-icons">close_round_fill</i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="block">
+            <div class="row">
+              <div class="col"></div>
+              <div class="col" style="text-align: center;">
+                <img src="img/user.jpg" width="70" id="select-mentor-demo-image" height="70" style="border-radius:50%">
+              </div>
+              <div class="col"></div>
+            </div>
+            <div class="row text-align-center">
+              <p class="col-100" style="margin-bottom: -7px;"><b id="select-mentor-demo-fullname"></b></p><br>
+              <p class="col-100" style="margin-bottom: -7px;display:none;">Rs.<b id="select-mentor-demo-charge">100</b>/-</p>
+              <p class="col-100" style="margin-bottom: -7px;">Tution Type : <b id="select-mentor-demo-tutiontype"></b></p>
+            </div>
+          </div>
+          <div class="block">
+            <div class="list inline-labels no-hairlines-md">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="material-icons">star</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">Subject</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlDemoClassSubject" required validate></select>
+                    </div>
+                  </div>
+                </li>
+                
+                
+
+                <li class="item-content item-input" id="demo-class-address">
+                  <div class="item-media">
+                    <i class="material-icons">location_on</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">Rrgistered Address</div>
+                    <div class="item-input-wrap">
+                      <textarea id="txtDemoClassRegisterAddress" placeholder="Enter Registered Address" required validate></textarea>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input"  id="demo-class-landmark">
+                  <div class="item-media">
+                    <i class="material-icons">landscape</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">Landmark</div>
+                    <div class="item-input-wrap">
+                      <input type="text" id="txtDemoClassLandmark" placeholder="Your Landmark" required validate>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- <li class="item-content item-input">
+                  <p>Pay Amount : <b id="mentorSelectionPaymentAmount"></b></p>
+                </li> -->
+
+                <li class="item-content item-input">
+                  <button class="button color-green button-fill-md col" id="btnpayForDemoClass" onclick="phonegapApp.payForDemoClass()">Book Class</button>
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Mentor Select Mentor -->
+    <div class="popup popup-paidClass">
+      <div class="page">
+        <div class="navbar no-shadow">
+          <div class="navbar-inner">
+            <div class="left title">Select Mentor</div>
+            <div class="right">
+              <a href="#" class="link popup-close">
+                <i class="icon f7-icons">close_round_fill</i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="block">
+            <div class="row">
+              <div class="col"></div>
+              <div class="col" style="text-align: center;">
+                <img src="img/user.jpg" width="70" id="select-mentor-image" height="70" style="border-radius:50%">
+              </div>
+              <div class="col"></div>
+            </div>
+            <div class="row text-align-center">
+              <p class="col-100" style="margin-bottom: -7px;"><b id="select-mentor-fullname"></b></p><br>
+              <p class="col-100" style="margin-bottom: -7px;">Rs.<b id="select-mentor-charge"></b>/-</p>
+              <p class="col-100" style="margin-bottom: -7px;">Tution Type : <b id="select-mentor-tutiontype"></b></p>
+            </div>
+          </div>
+          <div class="block">
+            <div class="list inline-labels no-hairlines-md">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="material-icons">star</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">Subject</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlpaidClassSubject" required validate></select>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="material-icons">class</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">Number Of Class</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlpaidClassNumberOfClass" required validate onchange="phonegapApp.calulatePayment()">
+                        <option value="">Number Of Class</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="16">16</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="22">22</option>
+                        <option value="24">24</option>
+                        <option value="26">26</option>
+                        <option value="28">28</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="item-content item-input">
+                  <div class="item-media">
+                    <i class="material-icons">access_time</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">How Many Hours</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                      <select id="ddlpaidClassHours" required validate onchange="phonegapApp.calulatePayment()">
+                        <option value="">How Many Hours</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                  </div>
+                </li>
+    
+                <li class="item-content item-input" id="paid-class-address">
+                  <div class="item-media">
+                    <i class="material-icons">location_on</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">Rrgistered Address</div>
+                    <div class="item-input-wrap">
+                      <textarea id="txtpaidClassRegisterAddress" placeholder="Enter Registered Address" required validate></textarea>
+                    </div>
+                  </div>
+                </li>               
+    
+                <li class="item-content item-input" id="paid-class-landmark">
+                  <div class="item-media">
+                    <i class="material-icons">landscape</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title item-label">Landmark</div>
+                    <div class="item-input-wrap">
+                      <input type="text" id="txtpaidClassLandmark" placeholder="Your Landmark" required validate>
+                    </div>
+                  </div>
+                </li>
+                <!-- <li class="item-content item-input">
+                  <p>Pay Amount : <b id="paidClasstionPaymentAmount"></b></p>
+                </li> -->
+    
+                <li class="item-content item-input">
+                  <button class="button color-green button-fill-md col" id="btnpayForPaidClass" onclick="phonegapApp.payForpaidClass()">Book Class</button>
+                </li>
+    
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- Cordova -->
+
+  <!-- <script src="cordova.js"></script> -->
+  <script src="framework7/js/framework7.min.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/Chart.min.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script src="cordova.js"></script>
+  <script type="text/javascript">
+    phonegapApp.initialize();
+  </script>
+</body>
+
+</html>

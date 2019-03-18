@@ -1,0 +1,102 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Edit Profile</div>
+                <div class="right">
+                    <a href="#" class="link" onclick="phonegapApp.updateStudentData()">
+                        <i class="icon f7-icons">check</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col" style="text-align: center;">
+                    <img src="img/user1.jpg" class="profile-user-image" width="70" id="profile-user-image">
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col" style="text-align: center;"><a href="#" class="link popover-open text-color-blue" href="#" data-popover=".popover-image-select">Change Photo</a></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="list no-hairlines-md" style="width:100%">
+                    <ul>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Name</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Your name" value="" id="txtEditStudentName">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Date Of Birth</div>
+                                <div class="item-input-wrap">
+                                    <input type="date" placeholder="" id="txtEditStudentDOB">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Address</div>
+                                <div class="item-input-wrap">
+                                    <textarea cols="30" paceholder="Enter your address" id="txtEditStudentAddress"></textarea>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Pincode</div>
+                                <div class="item-input-wrap">
+                                    <input type="number" placeholder="Pincode" id="txtEditStudentPin">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Gender</div>
+                                <div class="item-input-wrap">
+                                    <select name="ddlGender" id="txtEditStudentGender">
+                                        <option value="" selected hidden>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">School</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="School" id="txtEditStudentSchool">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

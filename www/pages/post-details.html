@@ -1,0 +1,49 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;" id="lblpostUserName"></div>
+                <div class="right">
+                    <a href="#" class="link" id="morePost">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="toolbar messagebar">
+            <div class="toolbar-inner">
+                <a class="toggle-sheet" href="#">
+                    <div class="message-avatar" style="background-image:url(img/user.jpg);" id="lblCurrentUserImage"></div>
+                </a>
+                <div class="messagebar-area">
+                    <textarea placeholder="Comment" id="txtPostComment"></textarea>
+                </div>
+                <input type="hidden" id="txtPostIdComment">
+                <a class="link text-color-blue" href="#" onclick="phonegapApp.comment()">Post</a>
+            </div>
+            <div class="messagebar-sheet"></div>
+        </div>
+        <div class="page-content messages-content">
+            <div class="block block-strong">
+                <div class="row">
+                    <div class="col-20 text-align-center">
+                        <img src="img/user.jpg" width="34" height="34" id="lblPostUserImage" style="border-radius: 50%;">
+                    </div>
+                    <div class="col-80" id="lblPostContent"></div>
+                </div>
+            </div>
+            <div class="messages" id="lblPostComment">
+                
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return { }
+</script>

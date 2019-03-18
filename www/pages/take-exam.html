@@ -1,0 +1,54 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" id="lblExamNameForExamage">{{this.$route.params.examName}}</div>
+            </div>
+        </div>
+        <div class="page-content infinite-scroll-content infinite-scroll-content-details">
+            <input type="hidden" value="{{this.$route.params.examId}}" id="txtExamIdForNextExam">
+            <!-- <form action="http://guru-siksha.com/manage_api/submitExam" method="post" class="form-ajax-submit"> -->
+                <div class="list">
+                    <ul id="lblExamQuistion">
+                        
+                    </ul>
+                </div>
+                <div class="preloader infinite-scroll-preloader"></div>
+                <button class="button" type="submit" onclick="phonegapApp.submitResult({{this.$route.params.examId}})">Submit</button>
+            <!-- </form> -->
+        </div>
+    </div>
+</template>
+<script>
+    
+    return {
+            on: {
+
+                pageInit: function (e, page) {
+                    let examID = $('#txtExamIdForNextExam').val()
+                    let allowInfinite = true;
+                    let lastItemIndex = $$('.infinite-scroll-content-details li').length;
+                    let maxItems = 200;
+                    let itemsPerLoad = 20;
+                    $$('.infinite-scroll-content-details').on('infinite', function () {
+                        if (!allowInfinite) return;
+                        allowInfinite = false;
+                        setTimeout(function () {
+                            allowInfinite = true;
+                            phonegapApp.takeExamLazy(examID)
+                            // $$('.infinite-scroll-preloader').remove();
+                            // lastItemIndex = $$('.ptr-content li').length;
+                            return;
+                        }, 1000);
+                    });
+                },
+
+            }
+        }
+</script>

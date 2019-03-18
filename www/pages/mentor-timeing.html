@@ -1,0 +1,205 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Mentor Time Assign</div>
+
+            </div>
+        </div>
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#historytime" class="tab-link">History</a>
+                <a href="#createtime" class="tab-link tab-link-active">Create</a>
+            </div>
+        </div>
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="historytime" class="page-content tab">
+                    <div class="block" id="lblSeduleHistory">
+                        <div class="list">
+                            <ul id="listMentorTimeing">
+                                <!-- <li class="swipeout deleted-callback">
+                                    <div class="item-content swipeout-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Swipe left on me please</div>
+                                        </div>
+                                    </div>
+                                    <div class="swipeout-actions-right">
+                                        <a href="#" class="swipeout-delete">Delete</a>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+               
+                    <div id="createtime" class="page-content tab tab-active">
+                        <div class="list no-hairlines-md block">
+                            <ul>
+                                <li>
+                                    <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                        <select name="selectDays" id="selectDaysTime">
+                                            <option value="">Select</option>
+                                        </select>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Select Day</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="block">
+                            <div class="list inline-labels no-hairlines-md">
+                                <div class="block-title text-color-blue">Early Morning</div>
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-green">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Start Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="startTime[]" id="startTime1" placeholder="Start Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-red">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">End Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="endTime[]" id="endTime1" placeholder="End Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list inline-labels no-hairlines-md">
+                                <div class="block-title text-color-blue">Morning</div>
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-green">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Start Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="startTime[]" id="startTime2" placeholder="Start Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-red">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">End Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="endTime[]" id="endTime2" placeholder="End Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list inline-labels no-hairlines-md">
+                                <div class="block-title text-color-blue">Afternoon</div>
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-green">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Start Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="startTime[]" id="startTime3" placeholder="Start Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-red">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">End Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="endTime[]" id="endTime3" placeholder="End Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list inline-labels no-hairlines-md">
+                                <div class="block-title text-color-blue">Evening</div>
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-green">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Start Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="startTime[]" id="startTime4" placeholder="Start Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-red">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">End Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="endTime[]" id="endTime4" placeholder="End Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list inline-labels no-hairlines-md">
+                                <ul>
+                                    <!-- <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons color-green">timer_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Start Time</div>
+                                            <div class="item-input-wrap">
+                                                <input type="time" name="startTime[]" id="startTime4" placeholder="Start Time">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li> -->
+                                    <li class="item-content item-input">
+                                        <button class="button color-green button-fill-md col" onclick="phonegapApp.updateRutin()">Submit</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

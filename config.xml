@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.guru.siksha" version="0.1.8" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Gurusiksha</name>
+    <description>
+        In Gurusiksha we provide quality coaching and training services to our student’s
+        online .We provide online tuition platform for providing coaching and training to
+        our students. This is an innovative and unique approach to solve the queries of
+        the students in Kolkata. Here students will get the opportunity to resolve their
+        queries by contacting with their online tutors any time.
+    </description>
+    <author email="saikat.projukti@gmail.com" href="http://guru-siksha.com">
+        Projukti Team
+    </author>
+    <content src="index.html" />
+    <preference name="DisallowOverscroll" value="false" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="Fullscreen" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="StatusBarBackgroundColor" value="#e55d05" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="SplashScreenDelay" value="6000" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <platform name="ios">
+        <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
+        <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
+        <icon height="40" platform="ios" src="www/res/icon/ios/icon-40.png" width="40" />
+        <icon height="80" platform="ios" src="www/res/icon/ios/icon-40@2x.png" width="80" />
+        <icon height="50" platform="ios" src="www/res/icon/ios/icon-50.png" width="50" />
+        <icon height="100" platform="ios" src="www/res/icon/ios/icon-50@2x.png" width="100" />
+        <icon height="60" platform="ios" src="www/res/icon/ios/icon-60.png" width="60" />
+        <icon height="120" platform="ios" src="www/res/icon/ios/icon-60@2x.png" width="120" />
+        <icon height="180" platform="ios" src="www/res/icon/ios/icon-60@3x.png" width="180" />
+        <icon height="72" platform="ios" src="www/res/icon/ios/icon-72.png" width="72" />
+        <icon height="144" platform="ios" src="www/res/icon/ios/icon-72@2x.png" width="144" />
+        <icon height="76" platform="ios" src="www/res/icon/ios/icon-76.png" width="76" />
+        <icon height="152" platform="ios" src="www/res/icon/ios/icon-76@2x.png" width="152" />
+        <icon height="29" platform="ios" src="www/res/icon/ios/icon-small.png" width="29" />
+        <icon height="58" platform="ios" src="www/res/icon/ios/icon-small@2x.png" width="58" />
+        <icon height="87" platform="ios" src="www/res/icon/ios/icon-small@3x.png" width="87" />
+        <icon height="1024" platform="ios" src="www/res/icon/ios/icon-1024@4x.png" width="1024" />
+        <splash height="1136" platform="ios" src="www/res/screen/ios/Default-568h@2x~iphone.png" width="640" />
+        <splash height="1334" platform="ios" src="www/res/screen/ios/Default-667h.png" width="750" />
+        <splash height="2208" platform="ios" src="www/res/screen/ios/Default-736h.png" width="1242" />
+        <splash height="1242" platform="ios" src="www/res/screen/ios/Default-Landscape-736h.png" width="2208" />
+        <splash height="1536" platform="ios" src="www/res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="768" platform="ios" src="www/res/screen/ios/Default-Landscape~ipad.png" width="1024" />
+        <splash height="2048" platform="ios" src="www/res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
+        <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
+        <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
+        <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
+    </platform>
+    <access origin="*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <resource-file src="GoogleService-Info.plist" target="app/GoogleService-Info.plist" />
+    </platform>
+    <engine name="ios" />
+    <plugin name="cordova-plugin-battery-status" spec="~1.2.4" />
+    <plugin name="cordova-plugin-camera" spec="~2.4.1">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="GURUSIKSHA app requires access to the CAMERA" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="GURUSIKSHA app requires access to the PHOTOLIBRARY." />
+    </plugin>
+    <plugin name="cordova-plugin-media-capture" spec="~1.4.3" />
+    <plugin name="cordova-plugin-device" spec="~1.1.6" />
+    <plugin name="cordova-plugin-dialogs" spec="~1.3.3" />
+    <plugin name="cordova-plugin-file" spec="~4.3.3" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
+    <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
+    <plugin name="cordova-plugin-network-information" spec="~1.3.3" />
+    <plugin name="cordova-plugin-vibration" spec="~2.1.5" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-customurlscheme" spec="~4.3.0">
+        <variable name="URL_SCHEME" value="gurusiksha" />
+    </plugin>
+    <plugin name="cordova-plugin-code-push" spec="~1.11.2" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
+</widget>

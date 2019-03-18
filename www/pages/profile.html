@@ -1,0 +1,114 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <a href="#" class="link no-gap left popover-open" data-popover=".popover-logout">
+                    <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;" id="lblLougoutName">info2programmer</div>
+                    <i class="icon f7-icons" style="font-size: 14px;">chevron_down</i>
+                </a>
+                <div class="right">
+                    <a class="panel-open link icon-only" href="#" data-panel="right">
+                        <i class="icon f7-icons">bars</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content infinite-scroll-content infinite-scroll-content-profile ptr-content ptr-content-profile" id="profilePage">
+            <div class="ptr-preloader">
+                <div class="preloader"></div>
+                <div class="ptr-arrow"></div>
+            </div>
+            <div class="block">
+                <div class="row">
+                    <div class="col-25 text-align-center">
+                        <img src="img/user.jpg" alt="" class="profile-user-image" width="80" height="80" id="lblUserImage">
+                    </div>
+                    <div class="col-75 text-align-center">
+                        <div class="row">
+                            <div class="col-33 text-align-center" id="dvPostsCount">
+                                <span class="strong-number" id="lblPostsCount">0</span><br>
+                                <span>posts</span>
+                            </div>
+                            <div class="col-33 text-align-center">
+                                <a href="/mentor-follower/" class="text-color-black">
+                                    <span class="strong-number" id="lblFollowers">0</span><br>
+                                    <span id="studentFolowers">Followers</span>
+                                </a>
+                                
+                            </div>
+                            <div class="col-33 text-align-center" id="dvFollowing">
+                                <span class="strong-number" id="lblFollowing">0</span><br>
+                                <span id="studentFolower">Following</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-5"></div>
+                            <div class="col-95 text-align-center">
+                                <a class="col-100 button color-blue button-outline button-small" id="editProfle" href="/edit-profile/">Edit
+                                    Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="block">
+                <div class="strong-number title" id="lblUserName">
+                    loading . . ..
+                </div>
+                <div id="lblUserBio">
+                    loading . . . .
+                </div>
+                <div id="lblAchivment">
+
+                </div>
+
+            </div>
+
+            <div class="block-title strong-number" id="your-post-content">Your Posts</div>
+            <div class="post-list" id="lblOwnPost">
+
+            </div>
+            <div class="preloader infinite-scroll-preloader infinite-scroll-preloader-profile" id="lblLoaderForOwnPost"></div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var $ptrContent = $$('.ptr-content-profile');
+                $ptrContent.on('ptr:refresh', function (e) {
+                    // Emulate 2s loading
+                    setTimeout(function () {
+                        app.views["current"].router.refreshPage()
+                        // When loading done, we need to reset it
+                        app.ptr.done(); // or e.detail();
+                    }, 2000);
+                });
+
+
+
+                let allowInfinite = true;
+                let lastItemIndex = $$('.ptr-content-profile div').length;
+                let maxItems = 200;
+                let itemsPerLoad = 20;
+
+                $$('.infinite-scroll-content-profile').on('infinite', function () {
+                    if (!allowInfinite) return;
+                    allowInfinite = false;
+                    setTimeout(function () {
+                        allowInfinite = true;
+                        phonegapApp.mentorNextPosts()
+                        $$('.infinite-scroll-preloader-profile').remove();
+                        lastItemIndex = $$('.ptr-content div').length;
+                        return;
+                    }, 1000);
+                });
+
+            },
+        }
+    }
+
+</script>

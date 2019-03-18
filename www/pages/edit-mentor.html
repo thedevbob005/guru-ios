@@ -1,0 +1,224 @@
+<template>
+    <div class="page" data-name="profile">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title" style="font-size: 16px;margin: 0 7px 0 5px;">Edit Profile</div>
+                <div class="right">
+                    <a href="#" class="link" onclick="phonegapApp.updateMentorProfile()">
+                        <i class="icon f7-icons">check</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col" style="text-align: center;">
+                    <img src="img/user1.jpg" class="profile-user-image" width="70" id="editMentorPhoto">
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col" style="text-align: center;"><a href="#" class="link popover-open text-color-blue" href="#" data-popover=".popover-image-select" >Change Photo</a></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="list no-hairlines-md" style="width:100%">
+                    <ul>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Name</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Your name" id="editMentorname">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Date Of Birth</div>
+                                <div class="item-input-wrap">
+                                    <input type="date" placeholder="" value="1995-06-16" id="editDateOfBirth">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Address</div>
+                                <div class="item-input-wrap">
+                                    <textarea cols="30" paceholder="Enter your address"  id="editMentorAddress"></textarea>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Pincode</div>
+                                <div class="item-input-wrap">
+                                    <input type="number" placeholder="Pincode" value="" id="editMentorPin">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Relation With Students</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Relation With Students" value="lorem ipsum">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li> -->
+
+                        
+
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Achievement</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Achievement" value="Gold Medel" id="editMentorAchivment">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- <li class="">
+                            <a class="item-link smart-select smart-select-init" data-open-in="popup" data-searchbar="true"
+                                data-searchbar-placeholder="Search car">
+                                <select name="car" multiple>
+                                    <optgroup label="Japanese">
+                                        <option value="honda" selected>Honda</option>
+                                        <option value="lexus">Lexus</option>
+                                        <option value="mazda">Mazda</option>
+                                        <option value="nissan">Nissan</option>
+                                        <option value="toyota">Toyota</option>
+                                    </optgroup>
+                                    <optgroup label="German">
+                                        <option value="audi" selected>Audi</option>
+                                        <option value="bmw">BMW</option>
+                                        <option value="mercedes">Mercedes</option>
+                                        <option value="vw">Volkswagen</option>
+                                        <option value="volvo">Volvo</option>
+                                    </optgroup>
+                                    <optgroup label="American">
+                                        <option value="cadillac">Cadillac</option>
+                                        <option value="chrysler">Chrysler</option>
+                                        <option value="dodge">Dodge</option>
+                                        <option value="ford" selected>Ford</option>
+                                    </optgroup>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Day Preference</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a class="item-link smart-select smart-select-init" data-open-in="popup" data-searchbar="true"
+                                data-searchbar-placeholder="Search car">
+                                <select name="car" multiple>
+                                    <optgroup label="Japanese">
+                                        <option value="honda" selected>Honda</option>
+                                        <option value="lexus">Lexus</option>
+                                        <option value="mazda">Mazda</option>
+                                        <option value="nissan">Nissan</option>
+                                        <option value="toyota">Toyota</option>
+                                    </optgroup>
+                                    <optgroup label="German">
+                                        <option value="audi" selected>Audi</option>
+                                        <option value="bmw">BMW</option>
+                                        <option value="mercedes">Mercedes</option>
+                                        <option value="vw">Volkswagen</option>
+                                        <option value="volvo">Volvo</option>
+                                    </optgroup>
+                                    <optgroup label="American">
+                                        <option value="cadillac">Cadillac</option>
+                                        <option value="chrysler">Chrysler</option>
+                                        <option value="dodge">Dodge</option>
+                                        <option value="ford" selected>Ford</option>
+                                    </optgroup>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Time Preference</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a class="item-link smart-select smart-select-init" data-open-in="popup" data-searchbar="true"
+                                data-searchbar-placeholder="Search car">
+                                <select name="car" multiple>
+                                    <optgroup label="Japanese">
+                                        <option value="honda" selected>Honda</option>
+                                        <option value="lexus">Lexus</option>
+                                        <option value="mazda">Mazda</option>
+                                        <option value="nissan">Nissan</option>
+                                        <option value="toyota">Toyota</option>
+                                    </optgroup>
+                                    <optgroup label="German">
+                                        <option value="audi" selected>Audi</option>
+                                        <option value="bmw">BMW</option>
+                                        <option value="mercedes">Mercedes</option>
+                                        <option value="vw">Volkswagen</option>
+                                        <option value="volvo">Volvo</option>
+                                    </optgroup>
+                                    <optgroup label="American">
+                                        <option value="cadillac">Cadillac</option>
+                                        <option value="chrysler">Chrysler</option>
+                                        <option value="dodge">Dodge</option>
+                                        <option value="ford" selected>Ford</option>
+                                    </optgroup>
+                                </select>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Language For Communication</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li> -->
+
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Qualification</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Qualification" id="editQualification">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Experience</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Experience" id="editExperience">
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {}
+</script>

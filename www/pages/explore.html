@@ -1,0 +1,54 @@
+<template>
+    <div class="page" data-name="catalog">
+        <div class="navbar no-shadow">
+            <div class="navbar-inner">
+                <div class="title">Explore Class</div>
+            </div>
+        </div>
+        <div class="toolbar tabbar no-shadow">
+            <div class="toolbar-inner">
+                <a href="#tab-current-explore" class="tab-link tab-link-active">Regular</a>
+                <a href="#tab-demo-explore" class="tab-link">Demo</a>
+                <a href="#tab-prvious-explore" class="tab-link">Previous</a>
+            </div>
+        </div>
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="tab-current-explore" class="page-content tab tab-active ptr-content">
+                    <div class="block" id="tabRegularClassListExplore">
+                        <p class="text-align-center"><b>Class day and time not seduled Or You did't book any class</b>
+                        </p>
+                    </div>
+                </div>
+                <div id="tab-demo-explore" class="page-content tab  ptr-content">
+                    <div class="block" id="tabDemoClassListExplore">
+                        <p class="text-align-center"><b>Class day and time not seduled Or You did't book any class</b>
+                        </p>
+                    </div>
+                </div>
+                <div id="tab-prvious-explore" class="page-content tab  ptr-content">
+                    <div class="block" id="tabPreviousClassListExplore">
+                        <p class="text-align-center"><b>No record found Or You did't book any class</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var $ptrContent = $$('.ptr-content');
+                $ptrContent.on('ptr:refresh', function (e) {
+                    setTimeout(function () {
+                        phonegapApp.exploreClass()
+                        app.ptr.done(); // or e.detail();
+                    }, 2000);
+                });
+
+            },
+
+        }
+    }
+</script>

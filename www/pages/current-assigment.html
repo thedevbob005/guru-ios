@@ -1,0 +1,100 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Current Assessment</div>
+            </div>
+        </div>
+        <div class="toolbar tabbar no-shadow">
+            <div class="toolbar-inner">
+                <a href="#tab-chapter" class="tab-link tab-link-active">Chapter</a>
+                <a href="#tab-monthly" class="tab-link">Monthly</a>
+            </div>
+        </div>
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="tab-chapter" class="page-content tab tab-active">
+
+                    <!-- <div class="card demo-card-header-pic">
+                        <div style="background-image:url(img/nature1.jpg)" class="card-header align-items-flex-end">Parmudation Combination (Math) </div>
+                        <div class="card-content card-content-padding">
+                            <p class="date">Posted on January 21, 2015</p>
+                            <p>Class 12 Math Exam, Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta error, facere, laudantium repellat consequatur neque numquam aliquam at unde voluptatum alias cum quae quas maiores odio quia voluptatibus earum debitis!</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/exam/" class="link">Start Exam</a>
+                        </div>
+                    </div>
+                    <div class="card demo-card-header-pic">
+                        <div style="background-image:url(img/nature2.jpg)" class="card-header align-items-flex-end">Basic Database (Computer) </div>
+                        <div class="card-content card-content-padding">
+                            <p class="date">Posted on January 21, 2015</p>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem placeat, quibusdam voluptas ab nesciunt, est debitis totam pariatur quisquam ipsa assumenda quia veritatis recusandae similique. Consequuntur tempora nemo cupiditate quibusdam.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/exam/" class="link">Start Exam</a>
+                        </div>
+                    </div> -->
+                    <div class="list">
+                        <div class="block" id="filterExamSection">
+                            <div class="list inline-labels no-hairlines-md">
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons">star_round_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">By Subject</div>
+                                            <div class="item-input-wrap input-dropdown-wrap">
+                                                <select id="ddlSelectedSubjectsListForExam" onchange="phonegapApp.getSubjectChapter()">
+                            
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-media">
+                                            <i class="icon f7-icons">world_fill</i>
+                                        </div>
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Select Chapter </div>
+                                            <div class="item-input-wrap input-dropdown-wrap">
+                                                <select id="ddlSelectedChapterListForExam">
+                                            
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <button class="button color-green button-fill-md col" onclick="phonegapApp.searchExamNow()">Search Exam Now</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <ul id="currentAssignmentList" style="display:none;">
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div id="tab-monthly" class="page-content tab">
+                    <!-- <div class="card demo-card-header-pic">
+                        <div style="background-image:url(img/nature2.jpg)" class="card-header align-items-flex-end">Journey
+                            To Mountains</div>
+                        <div class="card-content card-content-padding">
+                            <p class="date">Posted on January 21, 2015</p>
+                            <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis
+                                nibh hendrerit...</p>
+                        </div>
+                        <div class="card-footer"><a href="/exam/" class="link">Start Exam</a></div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
